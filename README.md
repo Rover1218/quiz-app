@@ -12,6 +12,8 @@ A modern, interactive quiz application built with **Node.js** and **Tailwind CSS
 - 🎉 **Confetti Celebration**: Celebrate correct answers with canvas-confetti.
 - 📱 **Responsive Design**: Optimized for both desktop and mobile devices.
 - 🛡️ **Fallback Questions**: Loads local questions if the API is unavailable.
+- ⚙️ **Customizable Settings**: Configure quiz parameters through an intuitive settings form
+- 🔄 **Smart Question Fetching**: Enhanced logic for reliable question retrieval and caching
 
 ---
 
@@ -73,6 +75,34 @@ Clone the repository:
   - Toggle sound effects on/off
   - Adjust sound volume
   - Choose different sound themes
+
+### Quiz Settings Form
+- **Category Selection**: Choose from 24+ topic categories
+- **Difficulty Levels**: Easy, Medium, or Hard
+- **Question Count**: Select 5-50 questions
+- **Timer Options**: 
+  - Enable/disable countdown timer
+  - Set time per question (15-120 seconds)
+- **Question Type**: 
+  - Multiple Choice
+  - True/False
+  - Mixed
+
+### Enhanced Question Fetching
+- **Smart Caching**:
+  - Questions cached for offline access
+  - Automatic cache refresh every 24 hours
+- **Failover Strategy**:
+  - Primary: Open Trivia DB API
+  - Secondary: Local backup questions
+  - Tertiary: Generated questions
+- **Rate Limiting**:
+  - Intelligent API request management
+  - Request throttling to prevent API abuse
+- **Error Handling**:
+  - Graceful degradation
+  - User-friendly error messages
+  - Automatic retry mechanism
 
 ## 🔧 Troubleshooting
 
