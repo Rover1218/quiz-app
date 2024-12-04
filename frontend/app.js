@@ -35,7 +35,7 @@ function playSound(sound) {
 soundToggle.addEventListener('click', toggleSound);
 
 // Update API URL to use local backend
-const API_URL = 'http://localhost:3000'; // Ensure this matches your backend
+const API_URL = 'https://quiz-app-rust-sigma.vercel.app'; // Ensure this matches your backend
 const questionBox = document.getElementById('question');
 const optionsBox = document.getElementById('options');
 const nextButton = document.getElementById('next-btn');
