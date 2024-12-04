@@ -1,3 +1,14 @@
+// Add this at the beginning of your app.js file
+document.getElementById('start-experience').addEventListener('click', function () {
+    // Hide welcome screen
+    document.getElementById('welcome-screen').style.display = 'none';
+    // Start background music
+    const backgroundMusic = document.getElementById('backgroundMusic');
+    backgroundMusic.play();
+    // Set initial volume
+    backgroundMusic.volume = 0.3;
+});
+
 // Add at the beginning of your file
 const correctSound = document.getElementById('correctSound');
 const wrongSound = document.getElementById('wrongSound');
