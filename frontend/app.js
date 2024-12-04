@@ -6,7 +6,12 @@ const backgroundMusic = document.getElementById('backgroundMusic');
 const soundToggle = document.getElementById('soundToggle');
 const soundIcon = document.getElementById('soundIcon');
 
+const settingsForm = document.getElementById('settings-form');
+const quizSettings = document.getElementById('quiz-settings');
+const quizBox = document.getElementById('quiz-box');
+
 let isSoundEnabled = true;
+let quizStarted = false;
 
 function toggleSound() {
     isSoundEnabled = !isSoundEnabled;
@@ -44,13 +49,16 @@ let questions = [];
 
 // Add error handling for API requests
 async function fetchQuestions() {
-    // Show loader
+    quizBox.style.display = 'none';
     loader.style.display = 'flex';
-    questionBox.style.display = 'none';
-    optionsBox.style.display = 'none';
+
+    const category = document.getElementById('category').value;
+    const difficulty = document.getElementById('difficulty').value;
+    const amount = document.getElementById('questionCount').value;
+    const type = document.getElementById('questionType').value; // Add this line
 
     try {
-        const response = await fetch(`${API_URL}/questions`); // Corrected endpoint
+        const response = await fetch(`${API_URL}/questions?category=${category}&difficulty=${difficulty}&amount=${amount}&type=${type}`); // Corrected endpoint
         if (!response.ok) throw new Error('Network response was not ok');
 
         const data = await response.json();
@@ -60,8 +68,8 @@ async function fetchQuestions() {
 
         questions = data;
 
-        // Hide loader and show quiz content
         loader.style.display = 'none';
+        quizBox.style.display = 'block';
         questionBox.style.display = 'block';
         optionsBox.style.display = 'grid';
 
@@ -202,9 +210,8 @@ replayButton.addEventListener('click', () => {
     score = 0;
     scoreDisplay.style.display = 'none';
     replayButton.style.display = 'none';
-    questionBox.style.display = 'block';
-    optionsBox.style.display = 'block';
-    fetchQuestions();
+    quizSettings.style.display = 'block';
+    quizBox.style.display = 'none';
     if (isSoundEnabled) {
         backgroundMusic.currentTime = 0;
         backgroundMusic.play();
@@ -263,9 +270,19 @@ if (retryButton) {
     });
 }
 
+// Add form submit handler
+settingsForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    quizSettings.style.display = 'none';
+    quizBox.style.display = 'block';
+    quizStarted = true;
+    fetchQuestions();
+});
+
 // Initialize the quiz
 document.addEventListener('DOMContentLoaded', () => {
-    fetchQuestions();
+    quizBox.style.display = 'none';
+    loader.style.display = 'none'; // Hide loader initially
     if (isSoundEnabled) {
         backgroundMusic.play();
     }
