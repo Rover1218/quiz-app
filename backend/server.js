@@ -8,6 +8,116 @@ const PORT = 3000;
 app.use(cors());
 app.use(express.json());
 
+// Add root route handler
+app.get('/', (req, res) => {
+    const html = `
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Quiz API Server</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+        <style>
+            @keyframes float {
+                0% { transform: translateY(0px); }
+                50% { transform: translateY(-20px); }
+                100% { transform: translateY(0px); }
+            }
+            @keyframes pulse {
+                0% { box-shadow: 0 0 0 0 rgba(147, 51, 234, 0.7); }
+                70% { box-shadow: 0 0 0 20px rgba(147, 51, 234, 0); }
+                100% { box-shadow: 0 0 0 0 rgba(147, 51, 234, 0); }
+            }
+            .float { animation: float 3s ease-in-out infinite; }
+            .pulse { animation: pulse 2s infinite; }
+            .gradient-text {
+                background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+                -webkit-background-clip: text;
+                background-clip: text;
+                color: transparent;
+            }
+        </style>
+    </head>
+    <body class="bg-gradient-to-br from-purple-900 via-purple-700 to-indigo-800 min-h-screen">
+        <div class="container mx-auto px-4 py-16">
+            <div class="max-w-3xl mx-auto">
+                <!-- Server Status Card -->
+                <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 mb-8 float">
+                    <div class="flex items-center justify-center space-x-4">
+                        <div class="h-4 w-4 bg-green-500 rounded-full pulse"></div>
+                        <h1 class="text-4xl font-bold text-white">Server Active</h1>
+                    </div>
+                </div>
+
+                <!-- Main Content Card -->
+                <div class="bg-white/20 backdrop-blur-lg rounded-2xl p-8 shadow-xl">
+                    <h2 class="text-3xl font-bold text-white mb-6 gradient-text">Quiz API Endpoint</h2>
+                    
+                    <!-- API Info -->
+                    <div class="bg-white/10 rounded-xl p-6 mb-6">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <span class="px-3 py-1 bg-purple-600 text-white rounded-full text-sm">GET</span>
+                            <code class="text-purple-200">/questions</code>
+                        </div>
+                        
+                        <!-- Collapsible Parameters Section -->
+                        <div class="relative">
+                            <button onclick="toggleParams()" class="flex items-center space-x-2 text-white hover:text-purple-300 transition-colors">
+                                <span class="text-sm font-semibold">View Parameters</span>
+                                <i class="fas fa-chevron-down" id="paramIcon"></i>
+                            </button>
+                            
+                            <div id="parameters" class="hidden mt-4 space-y-3 text-sm text-purple-200">
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="bg-white/5 p-3 rounded-lg">
+                                        <span class="block text-purple-300">Category</span>
+                                        <code>default: 9</code>
+                                    </div>
+                                    <div class="bg-white/5 p-3 rounded-lg">
+                                        <span class="block text-purple-300">Difficulty</span>
+                                        <code>default: medium</code>
+                                    </div>
+                                    <div class="bg-white/5 p-3 rounded-lg">
+                                        <span class="block text-purple-300">Amount</span>
+                                        <code>default: 10</code>
+                                    </div>
+                                    <div class="bg-white/5 p-3 rounded-lg">
+                                        <span class="block text-purple-300">Type</span>
+                                        <code>default: multiple</code>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Try It Section -->
+                    <div class="bg-purple-900/50 rounded-xl p-6">
+                        <h3 class="text-xl font-semibold text-purple-200 mb-3">Try it out</h3>
+                        <div class="bg-black/30 p-4 rounded-lg overflow-x-auto">
+                            <code class="text-green-400 text-sm">
+                                /questions?category=9&difficulty=medium&amount=10&type=multiple
+                            </code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function toggleParams() {
+                const params = document.getElementById('parameters');
+                const icon = document.getElementById('paramIcon');
+                params.classList.toggle('hidden');
+                icon.classList.toggle('fa-chevron-up');
+                icon.classList.toggle('fa-chevron-down');
+            }
+        </script>
+    </body>
+    </html>
+    `;
+    res.send(html);
+});
+
 // Fallback questions in case API fails
 const fallbackQuestions = [
     {
