@@ -4,17 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Quiz App</title>
+    <title>Guess the Correct</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="icon" type="image/png" href="./5691365.png">
+    <link rel="icon" type="image/png" href="./asset/images/5691365.png">
 </head>
 
 <body
     class="min-h-screen bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center p-4 font-['Poppins']">
+
+    <!-- Add audio elements -->
+    <audio id="correctSound" src="./asset/sounds/mixkit-correct-answer-tone-2870.wav"></audio>
+    <audio id="wrongSound" src="./asset/sounds/mixkit-wrong-answer-fail-notification-946.wav"></audio>
+    <audio id="resultSound" src="./asset/sounds/mixkit-magic-astral-sweep-effect-2629.wav"></audio>
+    <audio id="backgroundMusic" src="./asset/sounds/mixkit-game-level-music-689.wav" loop></audio>
 
     <!-- Loader -->
     <div id="loader"
@@ -37,8 +43,14 @@
     <div class="w-full max-w-3xl mx-auto">
         <div class="bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl p-8 animate__animated animate__fadeIn">
             <header class="text-center mb-8">
+                <!-- Add sound toggle button -->
+                <div class="absolute top-4 right-4">
+                    <button id="soundToggle" class="p-2 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors">
+                        <i class="fas fa-volume-up text-gray-700" id="soundIcon"></i>
+                    </button>
+                </div>
                 <h1 class="text-3xl font-bold text-gray-800 mb-4 animate__animated animate__bounceIn">
-                    Interactive Quiz
+                    Let's Play Quiz Game!
                 </h1>
                 <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
                     <div id="progress"

@@ -1,3 +1,34 @@
+// Add at the beginning of your file
+const correctSound = document.getElementById('correctSound');
+const wrongSound = document.getElementById('wrongSound');
+const resultSound = document.getElementById('resultSound');
+const backgroundMusic = document.getElementById('backgroundMusic');
+const soundToggle = document.getElementById('soundToggle');
+const soundIcon = document.getElementById('soundIcon');
+
+let isSoundEnabled = true;
+
+function toggleSound() {
+    isSoundEnabled = !isSoundEnabled;
+    soundIcon.className = isSoundEnabled ? 'fas fa-volume-up text-gray-700' : 'fas fa-volume-mute text-gray-700';
+
+    if (!isSoundEnabled) {
+        backgroundMusic.pause();
+    } else {
+        backgroundMusic.play();
+    }
+}
+
+function playSound(sound) {
+    if (isSoundEnabled && sound) {
+        sound.currentTime = 0;
+        sound.play();
+    }
+}
+
+// Add event listener for sound toggle
+soundToggle.addEventListener('click', toggleSound);
+
 // Update API URL to use local backend
 const API_URL = 'http://localhost:3000'; // Ensure this matches your backend
 const questionBox = document.getElementById('question');
@@ -122,6 +153,9 @@ function checkAnswer(selectedIndex, correctIndex) {
             origin: { y: 0.7 },
             colors: ['#4F46E5', '#818CF8', '#C7D2FE']
         });
+        playSound(correctSound);
+    } else {
+        playSound(wrongSound);
     }
 
     // Show next button
@@ -151,6 +185,8 @@ function showScore() {
             </div>
         </div>
     `;
+    backgroundMusic.pause();
+    playSound(resultSound);
 }
 
 function celebrateSuccess() {
@@ -169,6 +205,10 @@ replayButton.addEventListener('click', () => {
     questionBox.style.display = 'block';
     optionsBox.style.display = 'block';
     fetchQuestions();
+    if (isSoundEnabled) {
+        backgroundMusic.currentTime = 0;
+        backgroundMusic.play();
+    }
 });
 
 // Next question handler
@@ -226,4 +266,7 @@ if (retryButton) {
 // Initialize the quiz
 document.addEventListener('DOMContentLoaded', () => {
     fetchQuestions();
+    if (isSoundEnabled) {
+        backgroundMusic.play();
+    }
 });
