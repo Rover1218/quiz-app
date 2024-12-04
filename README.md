@@ -6,6 +6,7 @@ A modern, interactive quiz application built with **Node.js** and **Tailwind CSS
 
 - 🌐 **Dynamic Questions**: Fetch questions from the Open Trivia DB API.
 - 🎨 **Beautiful UI**: Designed with Tailwind CSS for a clean, responsive layout.
+- 🔊 **Sound Effects**: Engaging audio feedback for interactions.
 - ✨ **Animations**: Smooth transitions and visual effects using animate.css.
 - 📈 **Progress Tracking**: Visual progress bar and score updates in real-time.
 - 🎉 **Confetti Celebration**: Celebrate correct answers with canvas-confetti.
@@ -68,6 +69,10 @@ Clone the repository:
 - Change theme colors via Tailwind classes
 - Adjust question count in settings
 - Toggle animations and effects
+- **Sound Settings**:
+  - Toggle sound effects on/off
+  - Adjust sound volume
+  - Choose different sound themes
 
 ## 🔧 Troubleshooting
 
