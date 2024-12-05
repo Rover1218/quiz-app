@@ -11,6 +11,30 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" type="image/png" href="./asset/images/5691365.png">
+    <style>
+        select {
+            background-image: linear-gradient(45deg, #6366f1 1%, #8b5cf6 100%);
+            color: white !important;
+            border: none !important;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        select option {
+            background-color: #4f46e5;
+            color: white;
+        }
+
+        select:hover {
+            background-image: linear-gradient(45deg, #4f46e5 1%, #7c3aed 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -10px rgba(99, 102, 241, 0.5);
+        }
+
+        select:focus {
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3);
+            outline: none;
+        }
+    </style>
 </head>
 
 <body
@@ -34,7 +58,7 @@
     <audio id="correctSound" src="./asset/sounds/mixkit-correct-answer-tone-2870.wav"></audio>
     <audio id="wrongSound" src="./asset/sounds/mixkit-wrong-answer-fail-notification-946.wav"></audio>
     <audio id="resultSound" src="./asset/sounds/mixkit-magic-astral-sweep-effect-2629.wav"></audio>
-    <audio id="backgroundMusic" src="./asset/sounds/mixkit-game-level-music-689.wav" loop></audio>
+    <audio id="backgroundMusic" src="./asset/sounds/maringa-conga-246609.mp3" loop></audio>
 
     <!-- Loader -->
     <div id="loader"
@@ -77,8 +101,9 @@
                 <form id="settings-form" class="space-y-4">
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Category</label>
-                            <select id="category" class="w-full p-2 border rounded-lg">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Category</label>
+                            <select id="category"
+                                class="w-full p-3 rounded-lg shadow-sm transition-all duration-300 cursor-pointer">
                                 <option value="9">General Knowledge</option>
                                 <option value="10">Entertainment: Books</option>
                                 <option value="11">Entertainment: Film</option>
@@ -106,16 +131,18 @@
                             </select>
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Difficulty</label>
-                            <select id="difficulty" class="w-full p-2 border rounded-lg">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Difficulty</label>
+                            <select id="difficulty"
+                                class="w-full p-3 rounded-lg shadow-sm transition-all duration-300 cursor-pointer">
                                 <option value="easy">Easy</option>
                                 <option value="medium">Medium</option>
                                 <option value="hard">Hard</option>
                             </select>
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Number of Questions</label>
-                            <select id="questionCount" class="w-full p-2 border rounded-lg">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Number of Questions</label>
+                            <select id="questionCount"
+                                class="w-full p-3 rounded-lg shadow-sm transition-all duration-300 cursor-pointer">
                                 <option value="5">5</option>
                                 <option value="10" selected>10</option>
                                 <option value="15">15</option>
@@ -124,8 +151,9 @@
                         </div>
                         <!-- Add new question type selector -->
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Question Type</label>
-                            <select id="questionType" class="w-full p-2 border rounded-lg">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Question Type</label>
+                            <select id="questionType"
+                                class="w-full p-3 rounded-lg shadow-sm transition-all duration-300 cursor-pointer">
                                 <option value="multiple">Multiple Choice</option>
                                 <option value="boolean">True / False</option>
                             </select>
